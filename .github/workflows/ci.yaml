@@ -55,10 +55,10 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter clean
-      - run: flutter build appbundle --release
+      - run: flutter build apk --split-per-abi --release
       - name: Upload APK
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/bundle/release/app.aab"
+          artifacts: "build/app/outputs/apk/release/*.apk"
           tag: v1.0.${{ github.run_number }} Android
           token: ${{ secrets.TOKEN }}
