@@ -34,7 +34,13 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter clean
-      - run: flutter build ios --release --no-codesign
+      - run: flutter build ios --no-codesign --release
+      - name: Push to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/debug/*,build/ios/iphoneos/app.ipa"
+          tag: v1.0.${{ github.run_number }} ios
+          token: ${{ secrets.TOKEN }}
 
   build_appbundle:
     name: Build Flutter (Android)
@@ -50,4 +56,10 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter clean
-      - run: flutter build appbundle
+      - run: flutter build appbundle --release
+      - name: Push to Releases
+      - uses: ncipollo/release-action@v2
+        with:
+          artifacts: "build/app/outputs/flutter-apk/*.apk"
+          tag: v1.0.${{ github.run_number }} android
+          token: ${{ secrets.TOKEN }}
