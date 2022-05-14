@@ -57,7 +57,7 @@ jobs:
       - run: flutter clean
       - run: flutter build apk --split-per-abi --release
       - name: Upload APK
-        uses: ncipollo/release-action@v2
+        uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/flutter-apk/*.apk"
           tag: v1.0.${{ github.run_number }}
