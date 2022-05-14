@@ -41,14 +41,6 @@ jobs:
           name: ios-build
           path: build/ios/iphoneos
 
-
-
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: "release.tar.gz,foo/*.txt"
-        bodyFile: "body.md"
-        token: ${{ secrets.GITHUB_TOKEN }}
-
   build_appbundle:
     name: Build Flutter (Android)
     needs: [flutter_test]
