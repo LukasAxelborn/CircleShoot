@@ -1,8 +1,8 @@
 name: CI
 on:
-  pull_request:
-    branches:
-      - main
+  push:
+    tags:
+      - '*'
 
 jobs:
   flutter_test:
@@ -36,10 +36,13 @@ jobs:
       - run: flutter clean
       - run: flutter build ios --release --no-codesign
       - name: Upload iPA
-        uses: actions/upload-artifact@master
+        uses: ncipollo/release-action@v1
         with:
-          name: ios-build
-          path: build/ios/iphoneos
+          artifacts: "build/ios/iphoneos/*.ipa"
+          replacesArtifacts: false
+          tag: v1.0.${{ github.run_number }}
+          token: ${{ secrets.TOKEN }}
+          allowUpdates: true
 
   build_appbundle:
     name: Build Flutter (Android)
@@ -62,5 +65,8 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/flutter-apk/*.apk"
+          replacesArtifacts: false
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
+          allowUpdates: true
+
