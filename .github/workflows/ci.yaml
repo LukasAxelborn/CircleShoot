@@ -63,5 +63,4 @@ jobs:
         with:
           artifacts: "build/app/outputs/flutter-apk/*.apk"
           tag: v1.0.${{ github.run_number }}
-          bodyFile: "body.md"
           token: ${{ secrets.TOKEN }}
