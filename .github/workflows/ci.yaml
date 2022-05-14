@@ -6,7 +6,7 @@ on:
 
 jobs:
   flutter_test:
-    name: Run flutter ttttt
+    name: Run flutter
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -35,6 +35,19 @@ jobs:
       - run: flutter pub get
       - run: flutter clean
       - run: flutter build ios --release --no-codesign
+      - name: Upload iPA
+        uses: actions/upload-artifact@master
+        with:
+          name: ios-build
+          path: build/ios/iphoneos
+
+
+
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "release.tar.gz,foo/*.txt"
+        bodyFile: "body.md"
+        token: ${{ secrets.GITHUB_TOKEN }}
 
   build_appbundle:
     name: Build Flutter (Android)
@@ -50,4 +63,10 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter clean
-      - run: flutter build appbundle
+      - run: flutter build appbundle --release
+      - name: Upload APK
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/flutter-apk/*.apk"
+          tag: v1.0.${{ github.run_number }} Android
+          token: ${{ secrets.TOKEN }}
