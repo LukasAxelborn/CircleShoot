@@ -34,7 +34,7 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter clean
-      - run: flutter build ios --release --no-codesign
+      - run: lutter build ipa --release --no-codesign
       - name: Upload iPA
         uses: ncipollo/release-action@v1
         with:
