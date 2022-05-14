@@ -1,8 +1,8 @@
 name: CI
 on:
-  push:
-    tags:        
-      - '*'  
+ push:
+  tags:
+   - v* 
 
 jobs:
   flutter_test:
@@ -68,5 +68,5 @@ jobs:
           replacesArtifacts: false
 #          tag: v1.0.${{ github.run_number }}
           allowUpdates: true
-          token: ${{ secrets.TOKEN }}e
+          token: ${{ secrets.TOKEN }}
 
