@@ -45,7 +45,7 @@ class _StartMenuState extends State<StartMenu> with WidgetsBindingObserver {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            Text('My Game(TM)'),
+            Text('Circle Shoot'),
           ],
         ),
       ),

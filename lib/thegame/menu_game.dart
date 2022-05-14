@@ -62,7 +62,7 @@ class PauseMenuOverlay extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       const Text(
-                        'My Game',
+                        'Circle Shoot',
                         style: TextStyle(
                           fontSize: 32,
                           color: Colors.white,

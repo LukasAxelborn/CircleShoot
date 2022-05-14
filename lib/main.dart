@@ -10,7 +10,7 @@ void main() async {
       .then((_) {
     runApp(
       const MaterialApp(
-        title: 'Navigation Basics',
+        title: 'Circle Shoot',
         debugShowCheckedModeBanner: false,
         home: StartMenu(),
       ),
