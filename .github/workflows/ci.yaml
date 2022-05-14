@@ -57,8 +57,8 @@ jobs:
       - run: flutter clean
       - run: flutter build apk --split-per-abi --release
       - name: Upload APK
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v2
         with:
-          artifacts: "build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk"
-          tag: v1.0.${{ github.run_number }} Android
+          artifacts: "build/app/outputs/flutter-apk/*.apk"
+          tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
