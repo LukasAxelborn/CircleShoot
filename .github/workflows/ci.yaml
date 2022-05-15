@@ -34,6 +34,7 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
+
       - name: Setup    
         run: flutter pub get
         
@@ -41,7 +42,7 @@ jobs:
         run: flutter clean
         
       - name: Compile to IPA
-      - run: |
+        run: |
           flutter build ios --release
           cd build/ios/iphoneos
           mkdir Payload
