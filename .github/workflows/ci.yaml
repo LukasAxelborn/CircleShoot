@@ -32,13 +32,27 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
-      - run: flutter pub get
+          
+      - name: Setup    
+        run: flutter pub get
+        
+      - name: Clean folder    
       - run: flutter clean
-      - run: lutter build ipa --release
-      - name: Upload iPA
+      
+      - name: Compile to IPA
+        run: |
+          flutter build ios --no-codesign
+          cd build/ios/iphoneos
+          mkdir Payload
+          cd Payload
+          ln -s ../Runner.app
+          cd ..
+          zip -r app.ipa Payload
+          
+      - name: Push to Releases
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/ios/iphoneos/*.ipa"
+          artifacts: "build/app/outputs/apk/debug/*,build/ios/iphoneos/app.ipa"
           replacesArtifacts: false
 #          tag: v1.0.${{ github.run_number }}
           allowUpdates: true
@@ -58,9 +72,16 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
-      - run: flutter pub get
-      - run: flutter clean
-      - run: flutter build apk --split-per-abi --release
+          
+      - name: Setup    
+        run: flutter pub get
+        
+      - name: Clean folder    
+        run: flutter clean
+        
+      - name: Compile to IPA
+        run: flutter build apk --split-per-abi --release
+        
       - name: Upload APK
         uses: ncipollo/release-action@v1
         with:
