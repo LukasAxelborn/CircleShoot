@@ -2,10 +2,12 @@ import 'dart:math';
 
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:game/thegame/Component/button_gui.dart';
-import 'package:game/thegame/enemy.dart';
-import 'package:game/thegame/player.dart';
-import 'package:game/thegame/ui_stats.dart';
+import 'package:game/thegame/UI/button_gui.dart';
+import 'package:game/thegame/UI/ui_stats.dart';
+
+import 'UI/button_gui.dart';
+import 'avatars/enemy.dart';
+import 'avatars/player.dart';
 
 class GameBoard extends FlameGame with HasTappables {
   late Size screenSize;

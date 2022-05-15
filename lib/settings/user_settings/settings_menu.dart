@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:game/app_colors.dart';
+import 'package:game/settings/app_settings/app_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsMenu extends StatefulWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:game/leaderboard.dart';
-import 'package:game/scores_tracker_singleton.dart';
-import 'package:game/settings_menu.dart';
-import 'package:game/thegame/menu_game.dart';
+import 'package:game/leaderboard/leaderboard.dart';
+import 'package:game/settings/app_settings/scores_tracker_singleton.dart';
+import 'package:game/settings/user_settings/settings_menu.dart';
+import 'package:game/thegame/UI/menu_game.dart';
 
 class StartMenu extends StatefulWidget {
   const StartMenu({Key? key}) : super(key: key);

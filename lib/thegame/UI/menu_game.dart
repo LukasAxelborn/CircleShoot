@@ -1,7 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:game/app_colors.dart';
-import 'package:game/scores_tracker_singleton.dart';
+import 'package:game/settings/app_settings/app_colors.dart';
+import 'package:game/settings/app_settings/scores_tracker_singleton.dart';
 import 'package:game/thegame/game_board.dart';
 
 const pauseMenu = 'pauseMenu';

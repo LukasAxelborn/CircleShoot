@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:game/scores_tracker_singleton.dart';
+import 'package:game/settings/app_settings/scores_tracker_singleton.dart';
 
 class LeaderBoard extends StatefulWidget {
   const LeaderBoard({Key? key}) : super(key: key);

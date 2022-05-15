@@ -1,7 +1,8 @@
 import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:game/thegame/player.dart';
+
+import 'player.dart';
 
 class Enemy extends Player {
   /*
@@ -17,7 +18,7 @@ class Enemy extends Player {
     en skotten fårn riktingen använaren sköt kommer att interjectas men enemy
 
    */
-
+  static int instanccounter = 0;
   late Player player;
   late Vector2 nextCordinate;
   late double size;
@@ -25,7 +26,7 @@ class Enemy extends Player {
 
   bool huntPlayerMode = false;
   int shoots = 5;
-  Random rand = Random(DateTime.now().millisecondsSinceEpoch);
+  late Random rand;
 
   double sumdt = 0;
 
@@ -36,6 +37,9 @@ class Enemy extends Player {
       : super(playerPosition, playerAngel, size, playerColor, gameBordSize) {
     player = p;
     nextCordinate = generatePath();
+    speed *= 0.8;
+
+    rand = Random(DateTime.now().millisecondsSinceEpoch * (++instanccounter));
   }
 
   Vector2 generatePath() {
