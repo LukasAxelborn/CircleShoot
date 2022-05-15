@@ -6,7 +6,7 @@ import 'player.dart';
 
 class Enemy extends Player {
   /*
-    strat 1: random punker som enemy ska ta sig till,
+    strat 1: random punker som enemy ska ta sig till,         | färdig
 
     strat 2: få den röra sig i olika mönster så som tetrisk
 
@@ -35,18 +35,18 @@ class Enemy extends Player {
   Enemy(Vector2 playerPosition, double playerAngel, this.size,
       Paint playerColor, Vector2 gameBordSize, Player p)
       : super(playerPosition, playerAngel, size, playerColor, gameBordSize) {
+    rand = Random(DateTime.now().millisecondsSinceEpoch * (++instanccounter));
     player = p;
     nextCordinate = generatePath();
     speed *= 0.8;
-
-    rand = Random(DateTime.now().millisecondsSinceEpoch * (++instanccounter));
   }
 
   Vector2 generatePath() {
     double randX;
     double randY;
-    int boarder = 50;
+    int boarder = 20;
     while (true) {
+      //  funkar inte efftersom dom går ner i högra hörnet :C
       //randX = playerPosition.x + rand.nextDouble() * 100;
       //randY = playerPosition.y + rand.nextDouble() * 100;
 
@@ -205,7 +205,7 @@ class Enemy extends Player {
   void huntplayer() {
     bool aimFinish = aimAtTarget(playerPosition, player);
 
-    if (sumdt.toInt() % 2 == 0) {
+    if (sumdt.toInt() % 3 == 0) {
       if (aimFinish && rand.nextBool()) {
         shoot();
       }
