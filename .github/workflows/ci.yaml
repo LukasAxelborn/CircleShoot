@@ -41,7 +41,7 @@ jobs:
       
       - name: Compile to IPA
         run: |
-          flutter build ios --no-codesign
+          flutter build ios --release/debug
           cd build/ios/iphoneos
           mkdir Payload
           cd Payload
