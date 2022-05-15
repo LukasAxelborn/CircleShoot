@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:game/settings/app_settings/app_colors.dart';
 import 'package:game/thegame/UI/button_gui.dart';
 import 'package:game/thegame/UI/ui_stats.dart';
 
@@ -14,64 +15,30 @@ class GameBoard extends FlameGame with HasTappables {
   late double tileSize;
   late Rect background =
       Rect.fromLTWH(0, 0, screenSize.width, screenSize.height);
-  final Paint backgroundPaint = Paint()..color = Colors.white;
-  final Color color = const Color.fromARGB(106, 17, 235, 53);
+  final Paint backgroundPaint = Paint()..color = AppColors.background;
+  final Color color = AppColors.surface;
   late Player player;
-  late List<Enemy> listEnemy;
-  int counter = 0;
+
   bool goRight = false;
   bool goLeft = false;
   bool goStaight = false;
 
-  late List<ButtonGUI> buttonGUIList;
+  List<Enemy> listEnemy = <Enemy>[];
+  List<ButtonGUI> buttonGUIList = <ButtonGUI>[];
   late Uistat uistat;
 
   double timeSurvieved = 0;
-
-  GameBoard() {
-    listEnemy = <Enemy>[];
-  }
 
   @override
   Future<void> onLoad() async {
     resize(size.toSize());
 
-    player = Player(
-      Vector2((size[0] / 2), (size[1] / 2)),
-      pi / 2, //pi / 4
-      tileSize * 0.63,
-      Paint()..color = Colors.red,
-      size,
-    );
-
-    listEnemy.add(
-      Enemy(
-        Vector2(200, 200),
-        pi / 2, //pi / 4
-        tileSize * 0.63,
-        Paint()..color = Colors.green,
-        size,
-        player,
-      ),
-    );
-
-    listEnemy.add(
-      Enemy(
-        Vector2(100, 200),
-        0, //pi / 4
-        tileSize * 0.63,
-        Paint()..color = Colors.grey,
-        size,
-        player,
-      ),
-    );
+    inintilzegame();
 
     add(uistat = Uistat(
       size: Vector2(0, 32.0),
       game: this,
     ));
-
-    buttonGUIList = <ButtonGUI>[];
 
     //right
     buttonGUIList.add(ButtonGUI(
@@ -121,6 +88,39 @@ class GameBoard extends FlameGame with HasTappables {
   void resize(Size size) {
     screenSize = size;
     tileSize = screenSize.width / 10;
+  }
+
+  void inintilzegame() {
+    player = Player(
+      Vector2((size[0] / 2), (size[1] / 2)),
+      pi / 2, //pi / 4
+      tileSize * 0.63,
+      Paint()..color = Colors.red,
+      size,
+    );
+
+    listEnemy = <Enemy>[];
+    listEnemy.add(
+      Enemy(
+        Vector2(200, 200),
+        pi / 2, //pi / 4
+        tileSize * 0.63,
+        Paint()..color = Colors.green,
+        size,
+        player,
+      ),
+    );
+
+    listEnemy.add(
+      Enemy(
+        Vector2(100, 200),
+        0, //pi / 4
+        tileSize * 0.63,
+        Paint()..color = Colors.grey,
+        size,
+        player,
+      ),
+    );
   }
 
   @override
@@ -174,6 +174,7 @@ class GameBoard extends FlameGame with HasTappables {
     player.currentHealth = player.maxHealth;
     player.score = 0;
     timeSurvieved = 0;
+    inintilzegame();
   }
 
   void freeze() {

@@ -37,8 +37,6 @@ class Uistat extends HudMarginComponent {
     _game = game;
   }
 
-  //final RobertSlapper game;
-
   @override
   Future<void> onLoad() async {
     super.onLoad();

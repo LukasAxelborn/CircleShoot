@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:path_provider/path_provider.dart';
@@ -64,7 +65,7 @@ class ScoresTrackerSingleton {
 
         var id = int.parse(score[0]);
 
-        if (_id < id) _id = id;
+        _id = max(_id, id);
 
         addScore(
           id,
