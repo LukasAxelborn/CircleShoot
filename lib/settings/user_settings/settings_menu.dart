@@ -60,45 +60,49 @@ class _SettingsMenuState extends State<SettingsMenu> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: ListView(
           children: [
-            TextField(
-              controller: _textController,
-              decoration: InputDecoration(
-                hintText: hintText,
-                border: const OutlineInputBorder(),
-                suffixIcon: IconButton(
-                  onPressed: () => _textController.clear(),
-                  icon: const Icon(Icons.clear),
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Visibility(
-                  visible: saveText,
-                  child: Text(
-                    "Saved",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: AppColors.ok,
-                      background: Paint()..color = AppColors.menuText,
+                TextField(
+                  controller: _textController,
+                  decoration: InputDecoration(
+                    hintText: hintText,
+                    border: const OutlineInputBorder(),
+                    suffixIcon: IconButton(
+                      onPressed: () => _textController.clear(),
+                      icon: const Icon(Icons.clear),
                     ),
                   ),
                 ),
-                MaterialButton(
-                  onPressed: () {
-                    _setUserName();
-                    _getUserName();
-                    _showSaveText();
-                  },
-                  color: Colors.blue,
-                  child: const Text(
-                    'Save Name',
-                    style: TextStyle(color: Colors.white),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Visibility(
+                      visible: saveText,
+                      child: Text(
+                        "Saved",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: AppColors.ok,
+                          background: Paint()..color = AppColors.menuText,
+                        ),
+                      ),
+                    ),
+                    MaterialButton(
+                      onPressed: () {
+                        _setUserName();
+                        _getUserName();
+                        _showSaveText();
+                      },
+                      color: Colors.blue,
+                      child: const Text(
+                        'Save Name',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
