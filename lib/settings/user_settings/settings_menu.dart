@@ -21,7 +21,7 @@ class _SettingsMenuState extends State<SettingsMenu> {
       saveText = true;
     });
 
-    final timer = Timer(const Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 2), () {
       setState(() {
         saveText = false;
       });
