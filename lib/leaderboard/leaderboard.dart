@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:game/settings/app_settings/scores_tracker_singleton.dart';
 
+import '../settings/app_settings/app_colors.dart';
+
 class LeaderBoard extends StatefulWidget {
   const LeaderBoard({Key? key}) : super(key: key);
 
@@ -57,27 +59,31 @@ class _LeaderBoardState extends State<LeaderBoard> {
 class ScorePosisionCard extends StatelessWidget {
   static const textStyle = TextStyle(fontSize: 24);
 
-  ScorePosisionCard({
-    Key? key,
-    required List<CsvFormat> data,
-    required int index,
-  })  : _data = data,
-        index = index,
+  ScorePosisionCard(
+      {Key? key, required List<CsvFormat> data, required this.index})
+      : _data = data,
         super(key: key);
   int index;
   final List<CsvFormat> _data;
+
+  Color getColorofIndex(int index) {
+    switch (index) {
+      case 0:
+        return AppColors.firstplace;
+      case 1:
+        return AppColors.secondplace;
+      case 2:
+        return AppColors.thirdplace;
+      default:
+        return AppColors.outsideplace;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(3),
-      color: index == 0
-          ? Colors.amber
-          : index == 1
-              ? Colors.blueGrey
-              : index == 2
-                  ? Colors.brown
-                  : Colors.white,
+      color: getColorofIndex(index),
       child: ListTile(
         leading: Text(
           _data[index].name,
