@@ -142,7 +142,7 @@ class PopUpConfirmationState extends State<PopUpConfirmation> {
             children: <Widget>[
               const Padding(
                 padding: EdgeInsets.all(8.0),
-                child: const Text(
+                child: Text(
                   "Mension Your ID ",
                 ),
               ),

@@ -59,12 +59,10 @@ class _LeaderBoardState extends State<LeaderBoard> {
 class ScorePosisionCard extends StatelessWidget {
   static const textStyle = TextStyle(fontSize: 24);
 
-  ScorePosisionCard(
-      {Key? key, required List<CsvFormat> data, required this.index})
-      : _data = data,
-        super(key: key);
-  int index;
-  final List<CsvFormat> _data;
+  const ScorePosisionCard({Key? key, required this.data, required this.index})
+      : super(key: key);
+  final int index;
+  final List<CsvFormat> data;
 
   Color getColorofIndex(int index) {
     switch (index) {
@@ -86,15 +84,15 @@ class ScorePosisionCard extends StatelessWidget {
       color: getColorofIndex(index),
       child: ListTile(
         leading: Text(
-          _data[index].name,
+          data[index].name,
           style: textStyle,
         ),
         title: Text(
-          _data[index].score.toString(),
+          data[index].score.toString(),
           style: textStyle,
         ),
         trailing: Text(
-          _data[index].time.toString(),
+          data[index].time.toString(),
           style: textStyle,
         ),
       ),

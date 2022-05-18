@@ -15,10 +15,12 @@ class _SettingsAutoForwardCheckBoxState
   @override
   Widget build(BuildContext context) {
     Color getColor(Set<MaterialState> states) {
+      /*
       const Set<MaterialState> interactiveStates = <MaterialState>{
         MaterialState.pressed,
         MaterialState.focused,
       };
+      */
 
       return Colors.red;
     }

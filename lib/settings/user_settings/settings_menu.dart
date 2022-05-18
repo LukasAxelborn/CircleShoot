@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:game/settings/app_settings/scores_tracker_singleton.dart';
 
 import 'user_settings_options/settings_auto_forward_checkbox.dart';
 import 'user_settings_options/settings_clear_leaderboard.dart';

@@ -98,16 +98,11 @@ class Enemy extends Player {
       huntCordinate();
     }
 
-/*
-    aimAtTarget(playerPosition, nextCordinate);
-
-    //playerAngel = getAngelToTarget(playerPosition, player);
-
-*/
     moveToCordinate();
     goForward();
   }
 
+/*
   @override
   void render(Canvas canvas) {
     super.render(canvas);
@@ -115,7 +110,7 @@ class Enemy extends Player {
     //    Rect.fromLTWH(nextCordinate.x, nextCordinate.y, 10, 10);
     //canvas.drawRect(nextCordinateRect, Paint()..color = Colors.black);
   }
-
+*/
   double getAngelToTarget(var p1, var p2) {
     if (p2 is Player) {
       p2 = p2.playerPosition;
