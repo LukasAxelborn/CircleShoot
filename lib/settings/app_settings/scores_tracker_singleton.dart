@@ -85,6 +85,10 @@ class ScoresTrackerSingleton {
     var ttt = scoreList.toString();
     await file.writeAsString(ttt);
   }
+
+  void clearList() {
+    scoreList.clear();
+  }
 }
 
 class CsvFormat {
