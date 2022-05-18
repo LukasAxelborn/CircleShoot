@@ -24,14 +24,41 @@ class _SettingsMenuState extends State<SettingsMenu> {
         padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: const [
-            SettingsUserNameChangeTextBox(),
-            SettingsDifficultySlider(),
-            SettingsAutoForwardCheckBox(),
-            SettingsOnlineCheckBox(),
-            SettingsClearLeaderBoard(),
+            CustomsRow(
+              widget: SettingsUserNameChangeTextBox(),
+            ),
+            CustomsRow(
+              widget: SettingsDifficultySlider(),
+            ),
+            CustomsRow(
+              widget: SettingsAutoForwardCheckBox(),
+            ),
+            CustomsRow(
+              widget: SettingsOnlineCheckBox(),
+            ),
+            CustomsRow(
+              widget: SettingsClearLeaderBoard(),
+            ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class CustomsRow extends StatelessWidget {
+  final Widget widget;
+  const CustomsRow({Key? key, required this.widget}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10.0),
+      margin: const EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+      ),
+      child: widget,
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game/settings/user_settings/user_settings_option_state/user_settings_state.dart';
 
 class SettingsDifficultySlider extends StatefulWidget {
   const SettingsDifficultySlider({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class SettingsDifficultySlider extends StatefulWidget {
 }
 
 class _SettingsDifficultySliderState extends State<SettingsDifficultySlider> {
-  double _currentSliderValue = 1;
+  double _currentSliderValue = UserSettingsState().getDifficulty().toDouble();
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +34,7 @@ class _SettingsDifficultySliderState extends State<SettingsDifficultySlider> {
           onChanged: (double value) {
             setState(() {
               _currentSliderValue = value;
+              UserSettingsState().setDifficulty(value.toInt());
             });
           },
         ),
