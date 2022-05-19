@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:game/settings/user_settings/user_settings_option_state/user_settings_state.dart';
 
 import '../../app_settings/app_colors.dart';
 
@@ -15,7 +15,7 @@ class SettingsUserNameChangeTextBox extends StatefulWidget {
 
 class _SettingsUserNameChangeTextBoxState
     extends State<SettingsUserNameChangeTextBox> {
-  String hintText = "AAAAA";
+  String hintText = UserSettingsState().getUserName();
   late bool saveText = false;
   final _textController = TextEditingController();
 
@@ -31,28 +31,21 @@ class _SettingsUserNameChangeTextBoxState
     });
   }
 
-  @override
-  void initState() {
-    super.initState();
-
-    _getUserName();
+  void _getUserName() {
+    setState(
+      () {
+        String _userName = UserSettingsState().getUserName();
+        hintText = _userName;
+      },
+    );
   }
 
-  Future<void> _getUserName() async {
-    final prefs = await SharedPreferences.getInstance();
-    final _userName = prefs.getString('USERNAME');
-    if (_userName != null) {
-      setState(
-        () {
-          hintText = _userName;
-        },
-      );
-    }
-  }
-
-  Future<void> _setUserName() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('USERNAME', _textController.text);
+  void _setUserName() {
+    setState(() {
+      String _username = _textController.text;
+      UserSettingsState().setUserName(_username);
+      hintText = _username;
+    });
   }
 
   @override
@@ -87,9 +80,9 @@ class _SettingsUserNameChangeTextBoxState
               child: Text(
                 "Saved",
                 style: TextStyle(
+                  fontWeight: FontWeight.bold,
                   fontSize: 20,
                   color: AppColors.ok,
-                  background: Paint()..color = AppColors.menuText,
                 ),
               ),
             ),

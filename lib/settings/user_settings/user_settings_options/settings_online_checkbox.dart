@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game/settings/user_settings/user_settings_option_state/user_settings_state.dart';
 
 class SettingsOnlineCheckBox extends StatefulWidget {
   const SettingsOnlineCheckBox({Key? key}) : super(key: key);
@@ -8,7 +9,7 @@ class SettingsOnlineCheckBox extends StatefulWidget {
 }
 
 class _SettingsOnlineCheckBoxState extends State<SettingsOnlineCheckBox> {
-  bool isChecked = false;
+  bool isChecked = UserSettingsState().getConnectOnline();
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +37,7 @@ class _SettingsOnlineCheckBoxState extends State<SettingsOnlineCheckBox> {
             onChanged: (bool? value) {
               setState(() {
                 isChecked = value!;
+                UserSettingsState().setConnectOnline(isChecked);
               });
             },
           ),

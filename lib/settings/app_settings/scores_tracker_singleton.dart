@@ -3,7 +3,8 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../user_settings/user_settings_option_state/user_settings_state.dart';
 
 class ScoresTrackerSingleton {
   ScoresTrackerSingleton._privateConstructor();
@@ -18,17 +19,8 @@ class ScoresTrackerSingleton {
     return _instance;
   }
 
-  Future<String> _getUserName() async {
-    final prefs = await SharedPreferences.getInstance();
-    final _userName = prefs.getString('USERNAME');
-    if (_userName == null) {
-      return "AAAAA";
-    }
-    return _userName;
-  }
-
   Future<void> addNewGame(int score, int time) async {
-    var name = await _getUserName();
+    var name = UserSettingsState().getUserName();
     addScore(_id++, name, score, time);
   }
 

@@ -4,6 +4,7 @@ class UserSettingsState {
   static const String difficulty = "difficulty";
   static const String moveforwardAutomatic = "MoveForward";
   static const String connectonline = "ConnectOnline";
+  static const String username = "UserName";
 
   static late final SharedPreferences preferences;
 
@@ -16,12 +17,11 @@ class UserSettingsState {
   }
 
   Future setDifficulty(int _difficulty) {
-    print(_difficulty);
     return preferences.setInt(difficulty, _difficulty);
   }
 
-  bool? getMoveForwardAutomatic() {
-    return preferences.getBool(moveforwardAutomatic);
+  bool getMoveForwardAutomatic() {
+    return preferences.getBool(moveforwardAutomatic) ?? false;
     // defult is error
   }
 
@@ -29,12 +29,20 @@ class UserSettingsState {
     return preferences.setBool(moveforwardAutomatic, _moveforwardAutomatic);
   }
 
-  bool? getConnectOnline() {
-    return preferences.getBool(connectonline);
+  bool getConnectOnline() {
+    return preferences.getBool(connectonline) ?? false;
     // defult is error
   }
 
   Future setConnectOnline(bool _connectonline) {
     return preferences.setBool(connectonline, _connectonline);
+  }
+
+  String getUserName() {
+    return preferences.getString(username) ?? "AAAAAA";
+  }
+
+  Future setUserName(String _username) {
+    return preferences.setString(username, _username);
   }
 }

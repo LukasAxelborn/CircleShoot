@@ -17,14 +17,7 @@ class _SettingsDifficultySliderState extends State<SettingsDifficultySlider> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "Difficulty:",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.black,
-          ),
-        ),
+        difficultytext("Difficulty:"),
         Slider(
           value: _currentSliderValue,
           max: 2,
@@ -40,34 +33,22 @@ class _SettingsDifficultySliderState extends State<SettingsDifficultySlider> {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Text(
-              "Easy",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
-            Text(
-              'Middel',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
-            Text(
-              'Hard',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
+          children: [
+            difficultytext("Easy"),
+            difficultytext("Middel"),
+            difficultytext("Hard"),
           ],
         ),
       ],
     );
   }
+
+  Widget difficultytext(String data) => Text(
+        data,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+          color: Colors.black,
+        ),
+      );
 }
