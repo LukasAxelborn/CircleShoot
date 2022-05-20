@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:game/leaderboard/leaderboard_offline/leaderboard_local.dart';
+import 'package:game/leaderboard/leaderboard_online/leaderboard_online.dart';
+
+import '../settings/app_settings/scores_tracker_online_singleton.dart';
 
 class LeaderBoard extends StatelessWidget {
-  const LeaderBoard({Key? key}) : super(key: key);
+  LeaderBoard({Key? key}) : super(key: key) {
+    ScoresTrackerOnlineSingleton().instancetescoreListOnline();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,16 +18,16 @@ class LeaderBoard extends StatelessWidget {
           appBar: AppBar(
             bottom: const TabBar(
               tabs: [
-                Tab(icon: Icon(Icons.people)),
                 Tab(icon: Icon(Icons.person)),
+                Tab(icon: Icon(Icons.people)),
               ],
             ),
             title: const Text("Leader Board"),
           ),
           body: const TabBarView(
             children: [
-              Icon(Icons.people),
               LeaderBoardLocal(),
+              LeaderBoardOnline(),
             ],
           ),
         ),

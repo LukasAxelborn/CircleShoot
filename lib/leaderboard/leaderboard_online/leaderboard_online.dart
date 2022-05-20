@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../settings/app_settings/csv_format.dart';
 import '../../settings/app_settings/app_colors.dart';
-import '../../settings/app_settings/scores_tracker_singleton.dart';
+import '../../settings/app_settings/scores_tracker_online_singleton.dart';
 
 class LeaderBoardOnline extends StatelessWidget {
   const LeaderBoardOnline({Key? key}) : super(key: key);
@@ -24,13 +25,16 @@ class LeaderBoardOnline extends StatelessWidget {
               child: TabBarView(
                 children: [
                   LeaderBoard(
-                    data: ScoresTrackerSingleton().getScoreListOrderByScore(2),
+                    data: ScoresTrackerOnlineSingleton()
+                        .getScoreListOnlineOrderByScore(2),
                   ),
                   LeaderBoard(
-                    data: ScoresTrackerSingleton().getScoreListOrderByScore(1),
+                    data: ScoresTrackerOnlineSingleton()
+                        .getScoreListOnlineOrderByScore(1),
                   ),
                   LeaderBoard(
-                    data: ScoresTrackerSingleton().getScoreListOrderByScore(0),
+                    data: ScoresTrackerOnlineSingleton()
+                        .getScoreListOnlineOrderByScore(0),
                   ),
                 ],
               ),

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../user_settings/user_settings_option_state/user_settings_state.dart';
+import 'csv_format.dart';
 
 class ScoresTrackerSingleton {
   ScoresTrackerSingleton._privateConstructor();
@@ -98,19 +99,5 @@ class ScoresTrackerSingleton {
 
   void clearList() {
     scoreList.clear();
-  }
-}
-
-class CsvFormat {
-  late int id;
-  late String name;
-  late int score;
-  late int time;
-  late int difficulty;
-
-  CsvFormat(this.id, this.name, this.score, this.time, this.difficulty);
-  @override
-  String toString() {
-    return '$id,$name,$score,$time,$difficulty';
   }
 }
