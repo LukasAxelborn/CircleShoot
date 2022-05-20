@@ -30,6 +30,13 @@ class GameBoard extends FlameGame with HasTappables {
 
   double timeSurvieved = 0;
 
+  static const preEnemyColors = <Color>[
+    Colors.white,
+    Colors.green,
+    Colors.grey,
+    Colors.lime,
+  ];
+
   @override
   Future<void> onLoad() async {
     resize(size.toSize());
@@ -107,27 +114,19 @@ class GameBoard extends FlameGame with HasTappables {
     );
 
     listEnemy = <Enemy>[];
-    listEnemy.add(
-      Enemy(
-        Vector2(200, 200),
-        pi / 2, //pi / 4
-        tileSize * 0.63,
-        Paint()..color = Colors.green,
-        size,
-        player,
-      ),
-    );
 
-    listEnemy.add(
-      Enemy(
-        Vector2(100, 200),
-        0, //pi / 4
-        tileSize * 0.63,
-        Paint()..color = Colors.grey,
-        size,
-        player,
-      ),
-    );
+    for (int i = 1; i <= UserSettingsState().getDifficulty() + 1; i++) {
+      listEnemy.add(
+        Enemy(
+          Vector2(i * 100, 200),
+          pi / i, //pi / 4
+          tileSize * 0.63,
+          Paint()..color = preEnemyColors[i],
+          size,
+          player,
+        ),
+      );
+    }
   }
 
   @override
