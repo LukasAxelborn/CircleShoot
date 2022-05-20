@@ -118,12 +118,7 @@ class Enemy extends Player {
 
     double dx = (p1.x - p2.x);
     double dy = (p1.y - p2.y);
-    var ddd = atan2(dy, dx) + pi;
-
-    return ddd;
-
-    //return acos((p1.x * p2.x + p1.y * p2.x) /
-    //    (sqrt(p1.x * p1.x + p1.y * p1.y) * sqrt(p2.x * p2.x + p2.y * p2.y)));
+    return atan2(dy, dx) + pi;
   }
 
   double distance(var a, var b) {
@@ -163,31 +158,6 @@ class Enemy extends Player {
     }
 
     return true;
-
-    /*
-    double dangel = playerAngel - angelTarget;
-
-
-    double inversAngelTarget;
-    if (angelTarget < pi) {
-      inversAngelTarget = (angelTarget + pi).abs();
-    } else {
-      inversAngelTarget = (angelTarget - pi).abs();
-    }
-
-    //debugPrint("angle: " + agel.toString() + " dangel: " + dangel.toString());
-    //ser till att bara göra stora kurs ändringar
-    if (dangel.abs() > 0.1) {
-      if (playerAngel < angelTarget || playerAngel < inversAngelTarget) {
-        setHeadning(-0.1);
-      } else if (playerAngel > inversAngelTarget) {
-        setHeadning(0.1);
-      }
-      return false;
-    }
-    return true;
-
-    */
   }
 
   bool playerUpDirection() {
