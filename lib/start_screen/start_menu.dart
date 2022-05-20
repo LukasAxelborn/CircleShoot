@@ -59,7 +59,7 @@ class _StartMenuState extends State<StartMenu> with WidgetsBindingObserver {
           const SizedBox(height: 16),
           CustumMenuButton(
             buttonText: "Leader Board",
-            fun: (context) => const LeaderBoard(),
+            fun: (context) => LeaderBoard(),
           ),
           const SizedBox(height: 16),
           CustumMenuButton(

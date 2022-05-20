@@ -1,6 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:game/settings/app_settings/app_colors.dart';
+import 'package:game/settings/app_settings/scores_tracker_online_singleton.dart';
 import 'package:game/settings/app_settings/scores_tracker_singleton.dart';
 import 'package:game/thegame/game_board.dart';
 
@@ -32,8 +33,14 @@ class PauseMenuOverlay extends StatelessWidget {
 
   PauseMenuOverlay({Key? key, required this.gameBoard}) : super(key: key) {
     gameBoard.freeze();
+
     if (gameBoard.timeSurvieved > 0) {
       ScoresTrackerSingleton().addNewGame(
+        gameBoard.uistat.score,
+        gameBoard.getTimeSurvived,
+      );
+
+      ScoresTrackerOnlineSingleton().addNewGame(
         gameBoard.uistat.score,
         gameBoard.getTimeSurvived,
       );
