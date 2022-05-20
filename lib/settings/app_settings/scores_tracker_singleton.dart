@@ -21,11 +21,12 @@ class ScoresTrackerSingleton {
 
   Future<void> addNewGame(int score, int time) async {
     var name = UserSettingsState().getUserName();
-    addScore(_id++, name, score, time);
+    int difficulty = UserSettingsState().getDifficulty();
+    addScore(_id++, name, score, time, difficulty);
   }
 
-  void addScore(int id, String name, int score, int time) {
-    scoreList.add(CsvFormat(id, name, score, time));
+  void addScore(int id, String name, int score, int time, int difficulty) {
+    scoreList.add(CsvFormat(id, name, score, time, difficulty));
   }
 
   void removeScore(int id) {
@@ -33,14 +34,30 @@ class ScoresTrackerSingleton {
   }
 
   List<CsvFormat> get getScoreList => scoreList;
-  List<CsvFormat> getScoreListOrderByScore() {
+
+  List<CsvFormat> getScoreListOrderByScore(int diff) {
     scoreList.sort((a, b) => b.score.compareTo(a.score));
-    return scoreList;
+
+    var scoreListWithDiff = <CsvFormat>[];
+
+    for (var el in scoreList) {
+      if (el.difficulty == diff) {
+        scoreListWithDiff.add(el);
+      }
+    }
+    return scoreListWithDiff;
   }
 
-  List<CsvFormat> getScoreListOrderByTime() {
+  List<CsvFormat> getScoreListOrderByTime(int diff) {
     scoreList.sort((a, b) => b.time.compareTo(a.time));
-    return scoreList;
+    var scoreListWithDiff = <CsvFormat>[];
+
+    for (var el in scoreList) {
+      if (el.difficulty == diff) {
+        scoreListWithDiff.add(el);
+      }
+    }
+    return scoreListWithDiff;
   }
 
   Future<void> loadCSV() async {
@@ -64,6 +81,7 @@ class ScoresTrackerSingleton {
           score[1],
           int.parse(score[2]),
           int.parse(score[3]),
+          int.parse(score[4]),
         );
       }
     } catch (e) {
@@ -88,10 +106,11 @@ class CsvFormat {
   late String name;
   late int score;
   late int time;
+  late int difficulty;
 
-  CsvFormat(this.id, this.name, this.score, this.time);
+  CsvFormat(this.id, this.name, this.score, this.time, this.difficulty);
   @override
   String toString() {
-    return '$id,$name,$score,$time';
+    return '$id,$name,$score,$time,$difficulty';
   }
 }
