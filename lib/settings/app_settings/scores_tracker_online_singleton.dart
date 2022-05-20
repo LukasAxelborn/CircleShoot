@@ -22,35 +22,39 @@ class ScoresTrackerOnlineSingleton {
   }
 
   Future<void> instancetescoreListOnline() async {
-    scoreListOnline = <CsvFormat>[];
-    var response =
-        await http.get(Uri.https(DOMAIN, USER + 'GET/getLeaderBoard.php'));
-    var jasonData = jsonDecode(response.body);
+    if (UserSettingsState().getConnectOnline()) {
+      scoreListOnline = <CsvFormat>[];
+      var response =
+          await http.get(Uri.https(DOMAIN, USER + 'GET/getLeaderBoard.php'));
+      var jasonData = jsonDecode(response.body);
 
-    for (var data in jasonData) {
-      addScore(
-        data['ID'],
-        data['UserName'],
-        data['Score'],
-        data['timesurvived'],
-        data['difficulty'],
-      );
+      for (var data in jasonData) {
+        addScore(
+          data['ID'],
+          data['UserName'],
+          data['Score'],
+          data['timesurvived'],
+          data['difficulty'],
+        );
+      }
     }
   }
 
   void addNewGame(int score, int time) {
-    var name = UserSettingsState().getUserName();
-    int difficulty = UserSettingsState().getDifficulty();
-    //addScore(_id++, name, score, time, difficulty);
+    if (UserSettingsState().getConnectOnline()) {
+      var name = UserSettingsState().getUserName();
+      int difficulty = UserSettingsState().getDifficulty();
 
-    var headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    };
+      var headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      };
 
-    var data = 'username=$name&score=$score&time=$time&difficulty=$difficulty';
+      var data =
+          'username=$name&score=$score&time=$time&difficulty=$difficulty';
 
-    var url = Uri.https(DOMAIN, USER + 'POST/addToLeaderboard.php');
-    http.post(url, headers: headers, body: data);
+      var url = Uri.https(DOMAIN, USER + 'POST/addToLeaderboard.php');
+      http.post(url, headers: headers, body: data);
+    }
   }
 
   void addScore(int id, String name, int score, int time, int difficulty) {

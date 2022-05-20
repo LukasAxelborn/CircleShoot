@@ -30,7 +30,7 @@ class UserSettingsState {
   }
 
   bool getConnectOnline() {
-    return preferences.getBool(connectonline) ?? false;
+    return preferences.getBool(connectonline) ?? true;
     // defult is error
   }
 
