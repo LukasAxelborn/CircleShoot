@@ -6,6 +6,7 @@ import 'package:game/settings/app_settings/app_colors.dart';
 import 'package:game/thegame/UI/button_gui.dart';
 import 'package:game/thegame/UI/ui_stats.dart';
 
+import '../settings/user_settings/user_settings_option_state/user_settings_state.dart';
 import 'UI/button_gui.dart';
 import 'avatars/enemy.dart';
 import 'avatars/player.dart';
@@ -59,15 +60,21 @@ class GameBoard extends FlameGame with HasTappables {
       () => {goLeft = true},
       () => {goLeft = false},
     ));
-    //forward
-    buttonGUIList.add(ButtonGUI(
-      size[0] * 0.5,
-      size[1] * 0.75,
-      tileSize * 1.5,
-      color,
-      () => {goStaight = true},
-      () => {goStaight = false},
-    ));
+
+    if (UserSettingsState().getMoveForwardAutomatic()) {
+      goStaight = true;
+    } else {
+      //forward
+      buttonGUIList.add(ButtonGUI(
+        size[0] * 0.5,
+        size[1] * 0.75,
+        tileSize * 1.5,
+        color,
+        () => {goStaight = true},
+        () => {goStaight = false},
+      ));
+    }
+
     //shout
     buttonGUIList.add(ButtonGUI(
       size[0] * 0.5,

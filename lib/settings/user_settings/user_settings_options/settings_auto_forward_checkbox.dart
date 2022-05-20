@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../user_settings_option_state/user_settings_state.dart';
+
 class SettingsAutoForwardCheckBox extends StatefulWidget {
   const SettingsAutoForwardCheckBox({Key? key}) : super(key: key);
 
@@ -10,7 +12,7 @@ class SettingsAutoForwardCheckBox extends StatefulWidget {
 
 class _SettingsAutoForwardCheckBoxState
     extends State<SettingsAutoForwardCheckBox> {
-  bool isChecked = false;
+  bool isChecked = UserSettingsState().getMoveForwardAutomatic();
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,7 @@ class _SettingsAutoForwardCheckBoxState
           onChanged: (bool? value) {
             setState(() {
               isChecked = value!;
+              UserSettingsState().setMoveForwardAutomatic(isChecked);
             });
           },
         ),
