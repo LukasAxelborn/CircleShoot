@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'package:game/settings/user_settings/user_settings_option_state/user_settings_state.dart';
 
 import 'player.dart';
 
@@ -25,7 +26,7 @@ class Enemy extends Player {
   double changeOfDirection = 0.1;
 
   bool huntPlayerMode = false;
-  int shoots = 5;
+  late int shootingspeed = 3;
   late Random rand;
 
   double sumdt = 0;
@@ -39,6 +40,21 @@ class Enemy extends Player {
     player = p;
     nextCordinate = generatePath();
     speed *= 0.8;
+
+    switch (UserSettingsState().getDifficulty()) {
+      case 0:
+        speed *= 0.5;
+        shootingspeed = 6;
+        break;
+      case 1:
+        speed *= 0.8;
+        shootingspeed = 3;
+        break;
+      case 2:
+        shootingspeed = 3;
+        break;
+      default:
+    }
   }
 
   Vector2 generatePath() {
@@ -170,9 +186,10 @@ class Enemy extends Player {
   void huntplayer() {
     bool aimFinish = aimAtTarget(playerPosition, player);
 
-    if (sumdt.toInt() % 3 == 0) {
+    if (sumdt.toInt() % shootingspeed == 1) {
       if (aimFinish && rand.nextBool()) {
         shoot();
+        debugPrint((sumdt.toInt()).toString());
       }
     }
   }

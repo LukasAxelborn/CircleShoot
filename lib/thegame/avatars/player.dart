@@ -23,12 +23,15 @@ class Player extends Colition {
   late List<Bullet> bullets;
 
   @override
+  // ignore: overridden_fields
   late double xHitbox;
 
   @override
+  // ignore: overridden_fields
   late double yHitbox;
 
   @override
+  // ignore: overridden_fields
   late double sizeHitbox;
 
   late Rect playerCenter =
@@ -70,8 +73,6 @@ class Player extends Colition {
 
     playerAngel = playerAngel > pi2 ? 0.001 : playerAngel;
     playerAngel = playerAngel <= 0 ? pi2 : playerAngel;
-
-    //debugPrint(playerAngel.toString());
   }
 
   void render(Canvas canvas) {
@@ -100,10 +101,32 @@ class Player extends Colition {
   void setHeadning(double headning) => playerAngel += headning;
 
   void goForward() {
-    playerPosition += Vector2(
-      speeddt * cos(playerAngel),
-      speeddt * sin(playerAngel),
-    );
+    if (playerPosition.x - sizeHitbox / 2 <= 0) {
+      playerPosition = Vector2(
+        playerPosition.x + 0.01,
+        playerPosition.y + 0.01,
+      );
+    } else if (playerPosition.x + sizeHitbox / 2 >= gameBordSize.x) {
+      playerPosition = Vector2(
+        playerPosition.x - 0.01,
+        playerPosition.y - 0.01,
+      );
+    } else if (playerPosition.y - sizeHitbox / 2 <= 0) {
+      playerPosition = Vector2(
+        playerPosition.x - 0.01,
+        playerPosition.y + 0.01,
+      );
+    } else if (playerPosition.y + sizeHitbox / 2 >= gameBordSize.y) {
+      playerPosition = Vector2(
+        playerPosition.x - 0.01,
+        playerPosition.y - 0.01,
+      );
+    } else {
+      playerPosition += Vector2(
+        speeddt * cos(playerAngel),
+        speeddt * sin(playerAngel),
+      );
+    }
   }
 
   void shoot() {
