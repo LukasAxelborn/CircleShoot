@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/customs_options_row.dart';
+import 'user_settings_options/settings_player_color.dart';
 import 'user_settings_options/settings_auto_forward_checkbox.dart';
 import 'user_settings_options/settings_clear_leaderboard.dart';
 import 'user_settings_options/settings_difficulty_slider.dart';
@@ -18,47 +20,22 @@ class _SettingsMenuState extends State<SettingsMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Settings'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: const [
-            CustomsRow(
-              widget: SettingsUserNameChangeTextBox(),
-            ),
-            CustomsRow(
-              widget: SettingsDifficultySlider(),
-            ),
-            CustomsRow(
-              widget: SettingsAutoForwardCheckBox(),
-            ),
-            CustomsRow(
-              widget: SettingsOnlineCheckBox(),
-            ),
-            CustomsRow(
-              widget: SettingsClearLeaderBoard(),
-            ),
+            CustomsRow(widget: SettingsUserNameChangeTextBox()),
+            CustomsRow(widget: SettingsDifficultySlider()),
+            CustomsRow(widget: SettingsPlayerColor()),
+            CustomsRow(widget: SettingsAutoForwardCheckBox()),
+            CustomsRow(widget: SettingsOnlineCheckBox()),
+            CustomsRow(widget: SettingsClearLeaderBoard()),
           ],
         ),
       ),
-    );
-  }
-}
-
-class CustomsRow extends StatelessWidget {
-  final Widget widget;
-  const CustomsRow({Key? key, required this.widget}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10.0),
-      margin: const EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-        color: Colors.grey[200],
-        borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-      ),
-      child: widget,
     );
   }
 }

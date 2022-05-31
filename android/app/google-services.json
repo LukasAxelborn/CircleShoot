@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "991082384935",
+    "firebase_url": "https://circleshoot-dff99-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "circleshoot-dff99",
+    "storage_bucket": "circleshoot-dff99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991082384935:android:8163c3ebe61ab0faf34802",
+        "android_client_info": {
+          "package_name": "com.lukas.circleshoot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991082384935-6a6le2fo6f34g9sphaq708h52dusacu4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9JwYI0H2weUWVgEbJ7jo1OxFUDe0M08M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991082384935-6a6le2fo6f34g9sphaq708h52dusacu4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

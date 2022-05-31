@@ -55,9 +55,9 @@ class _SettingsClearLeaderBoardState extends State<SettingsClearLeaderBoard> {
                 height: 5.0,
               ),
               Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade500,
-                    borderRadius: const BorderRadius.only(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(20.0),
                         bottomRight: Radius.circular(20.0)),
                   ),

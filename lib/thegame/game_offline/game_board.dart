@@ -3,13 +3,12 @@ import 'dart:math';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:game/settings/app_settings/app_colors.dart';
-import 'package:game/thegame/UI/button_gui.dart';
-import 'package:game/thegame/UI/ui_stats.dart';
 
-import '../settings/user_settings/user_settings_option_state/user_settings_state.dart';
-import 'UI/button_gui.dart';
-import 'avatars/enemy.dart';
-import 'avatars/player.dart';
+import '../../settings/user_settings/user_settings_option_state/user_settings_state.dart';
+import '../UI_common/button_gui.dart';
+import '../avatars/enemy.dart';
+import '../avatars/player.dart';
+import 'UI_Offline/ui_stats_offline.dart';
 
 class GameBoard extends FlameGame with HasTappables {
   late Size screenSize;
@@ -23,18 +22,19 @@ class GameBoard extends FlameGame with HasTappables {
   bool goRight = false;
   bool goLeft = false;
   bool goStaight = false;
+  double buttonSizeMulti = 3;
 
   List<Enemy> listEnemy = <Enemy>[];
   List<ButtonGUI> buttonGUIList = <ButtonGUI>[];
-  late Uistat uistat;
+  late UistatOffline uistat;
 
   double timeSurvieved = 0;
 
   static const preEnemyColors = <Color>[
-    Colors.white,
+    Colors.white, //wont be reach
     Colors.green,
     Colors.grey,
-    Colors.lime,
+    Colors.black,
   ];
 
   @override
@@ -43,16 +43,16 @@ class GameBoard extends FlameGame with HasTappables {
 
     inintilzegame();
 
-    add(uistat = Uistat(
+    add(uistat = UistatOffline(
       size: Vector2(0, 32.0),
       game: this,
     ));
 
     //right
     buttonGUIList.add(ButtonGUI(
-      screenSize.width * 0.75,
-      screenSize.height * 0.85,
-      tileSize * 1.5,
+      screenSize.width * 0.82,
+      screenSize.height * 0.83,
+      tileSize * buttonSizeMulti,
       color,
       () => {goRight = true},
       () => {goRight = false},
@@ -60,9 +60,9 @@ class GameBoard extends FlameGame with HasTappables {
 
     //left
     buttonGUIList.add(ButtonGUI(
-      size[0] * 0.25,
-      size[1] * 0.85,
-      tileSize * 1.5,
+      size[0] * 0.18,
+      size[1] * 0.83,
+      tileSize * buttonSizeMulti,
       color,
       () => {goLeft = true},
       () => {goLeft = false},
@@ -74,8 +74,8 @@ class GameBoard extends FlameGame with HasTappables {
       //forward
       buttonGUIList.add(ButtonGUI(
         size[0] * 0.5,
-        size[1] * 0.75,
-        tileSize * 1.5,
+        size[1] * 0.70,
+        tileSize * buttonSizeMulti,
         color,
         () => {goStaight = true},
         () => {goStaight = false},
@@ -86,7 +86,7 @@ class GameBoard extends FlameGame with HasTappables {
     buttonGUIList.add(ButtonGUI(
       size[0] * 0.5,
       size[1] * 0.90,
-      tileSize * 1.5,
+      tileSize * buttonSizeMulti,
       color,
       () => {player.shoot()},
       () => {},
@@ -109,7 +109,7 @@ class GameBoard extends FlameGame with HasTappables {
       Vector2((size[0] / 2), (size[1] / 2)),
       pi / 2, //pi / 4
       tileSize * 0.63,
-      Paint()..color = Colors.red,
+      Paint()..color = UserSettingsState().getPlayerColor(),
       size,
     );
 

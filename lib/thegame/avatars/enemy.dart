@@ -189,7 +189,7 @@ class Enemy extends Player {
     if (sumdt.toInt() % shootingspeed == 1) {
       if (aimFinish && rand.nextBool()) {
         shoot();
-        debugPrint((sumdt.toInt()).toString());
+        //debugPrint((sumdt.toInt()).toString());
       }
     }
   }

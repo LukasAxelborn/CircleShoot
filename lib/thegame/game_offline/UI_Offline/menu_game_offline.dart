@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:game/settings/app_settings/app_colors.dart';
 import 'package:game/settings/app_settings/scores_tracker_online_singleton.dart';
 import 'package:game/settings/app_settings/scores_tracker_singleton.dart';
-import 'package:game/thegame/game_board.dart';
+import 'package:game/thegame/game_offline/game_board.dart';
 
 const pauseMenu = 'pauseMenu';
 
-class Menugame extends StatelessWidget {
-  Menugame({Key? key}) : super(key: key);
+class MenugameOffline extends StatelessWidget {
+  MenugameOffline({Key? key}) : super(key: key);
 
   final gameBoard = GameBoard();
 

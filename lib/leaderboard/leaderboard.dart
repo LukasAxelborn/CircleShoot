@@ -22,6 +22,7 @@ class LeaderBoard extends StatelessWidget {
                 Tab(icon: Icon(Icons.people)),
               ],
             ),
+            centerTitle: true,
             title: const Text("Leader Board"),
           ),
           body: const TabBarView(

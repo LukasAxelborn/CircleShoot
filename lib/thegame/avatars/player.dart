@@ -17,6 +17,11 @@ class Player extends Colition {
   double speed = 100.0;
   double speeddt = 0;
   int score = 0;
+  String name = "";
+  double timeAlive = 0;
+  String playerid = "";
+
+  bool snapshotofdeadtime = false;
 
   late double _sizeOfSmallerRect;
 
@@ -73,6 +78,12 @@ class Player extends Colition {
 
     playerAngel = playerAngel > pi2 ? 0.001 : playerAngel;
     playerAngel = playerAngel <= 0 ? pi2 : playerAngel;
+
+    if (!isDead()) {
+      timeAlive += dt;
+    } else {
+      playerPosition = Vector2.all(-100.1);
+    }
   }
 
   void render(Canvas canvas) {
@@ -101,31 +112,35 @@ class Player extends Colition {
   void setHeadning(double headning) => playerAngel += headning;
 
   void goForward() {
-    if (playerPosition.x - sizeHitbox / 2 <= 0) {
-      playerPosition = Vector2(
-        playerPosition.x + 0.01,
-        playerPosition.y + 0.01,
-      );
-    } else if (playerPosition.x + sizeHitbox / 2 >= gameBordSize.x) {
-      playerPosition = Vector2(
-        playerPosition.x - 0.01,
-        playerPosition.y - 0.01,
-      );
-    } else if (playerPosition.y - sizeHitbox / 2 <= 0) {
-      playerPosition = Vector2(
-        playerPosition.x - 0.01,
-        playerPosition.y + 0.01,
-      );
-    } else if (playerPosition.y + sizeHitbox / 2 >= gameBordSize.y) {
-      playerPosition = Vector2(
-        playerPosition.x - 0.01,
-        playerPosition.y - 0.01,
-      );
+    if (isDead()) {
+      playerPosition = Vector2.all(-100.1);
     } else {
-      playerPosition += Vector2(
-        speeddt * cos(playerAngel),
-        speeddt * sin(playerAngel),
-      );
+      if (playerPosition.x - sizeHitbox / 2 <= 0) {
+        playerPosition = Vector2(
+          playerPosition.x + 0.01,
+          playerPosition.y + 0.01,
+        );
+      } else if (playerPosition.x + sizeHitbox / 2 >= gameBordSize.x) {
+        playerPosition = Vector2(
+          playerPosition.x - 0.01,
+          playerPosition.y - 0.01,
+        );
+      } else if (playerPosition.y - sizeHitbox / 2 <= 0) {
+        playerPosition = Vector2(
+          playerPosition.x - 0.01,
+          playerPosition.y + 0.01,
+        );
+      } else if (playerPosition.y + sizeHitbox / 2 >= gameBordSize.y) {
+        playerPosition = Vector2(
+          playerPosition.x - 0.01,
+          playerPosition.y - 0.01,
+        );
+      } else {
+        playerPosition += Vector2(
+          speeddt * cos(playerAngel),
+          speeddt * sin(playerAngel),
+        );
+      }
     }
   }
 
@@ -152,10 +167,14 @@ class Player extends Colition {
   }
 
   void gotHit() => currentHealth--;
-  bool isDead() => currentHealth <= 0;
+  bool isDead() => currentHealth <= 0 ? true : false;
 
   @override
   bool isColiding(opponent) {
     return true;
   }
+
+  get gettimeAlive => timeAlive.toInt();
+  get getPlayerPosision => playerPosition;
+  get getPlayerAngle => playerAngel;
 }

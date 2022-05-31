@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:game/leaderboard/leaderboard.dart';
 import 'package:game/settings/app_settings/scores_tracker_singleton.dart';
 import 'package:game/settings/user_settings/settings_menu.dart';
-import 'package:game/thegame/UI/menu_game.dart';
+import 'package:game/thegame/game_offline/UI_Offline/menu_game_offline.dart';
+
+import '../online_game/online_game.dart';
+import '../widgets/custum_menu_button.dart';
 
 class StartMenu extends StatefulWidget {
   const StartMenu({Key? key}) : super(key: key);
@@ -54,7 +57,14 @@ class _StartMenuState extends State<StartMenu> with WidgetsBindingObserver {
         children: [
           CustumMenuButton(
             buttonText: "Start Game",
-            fun: (context) => Menugame(),
+            fun: (context) => MenugameOffline(),
+          ),
+          const SizedBox(height: 16),
+          CustumMenuButton(
+            buttonText: "Start Online Game",
+            fun: (context) => const OnlineGame(
+              title: 'ONLINE GAME',
+            ),
           ),
           const SizedBox(height: 16),
           CustumMenuButton(
@@ -79,61 +89,8 @@ class StartMenu extends StatelessWidget with WidgetsBindingObserver {
   initState() {
     super.initState();
   }
-
+OnlineGame
  
 }
 */
 
-class SecondRoute extends StatelessWidget {
-  const SecondRoute({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Second Route'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
-        ),
-      ),
-    );
-  }
-}
-
-class CustumMenuButton extends StatelessWidget {
-  final String buttonText;
-  final Widget Function(BuildContext) fun;
-  const CustumMenuButton(
-      {Key? key, required this.buttonText, required this.fun})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButtonTheme(
-        data: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(minimumSize: const Size(200, 60))),
-        child: ElevatedButton(
-          child: Text(
-            buttonText,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-            ),
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: fun),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}

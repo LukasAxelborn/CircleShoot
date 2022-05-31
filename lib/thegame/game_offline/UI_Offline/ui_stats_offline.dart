@@ -1,9 +1,9 @@
 import 'package:flame/components.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
-import 'package:game/thegame/game_board.dart';
+import 'package:game/thegame/game_offline/game_board.dart';
 
-class Uistat extends HudMarginComponent {
+class UistatOffline extends HudMarginComponent {
   int _score = 0;
   int get score => _score;
   late TextComponent scoreComponent;
@@ -11,9 +11,9 @@ class Uistat extends HudMarginComponent {
   int _healthLeft = 50;
   late TextComponent healthLeftComponent;
 
-  late GameBoard _game;
+  final GameBoard game;
 
-  Uistat({required Vector2 size, required GameBoard game})
+  UistatOffline({required Vector2 size, required this.game})
       : super(position: size, anchor: Anchor.center) {
     TextPaint regular = TextPaint(
       style: const TextStyle(
@@ -34,7 +34,7 @@ class Uistat extends HudMarginComponent {
           ..anchor = Anchor.topCenter
           ..x = size.x / 2.5 // size is a property from game
           ..y = 32.0;
-    _game = game;
+    //_game = game;
   }
 
   @override
@@ -57,8 +57,8 @@ class Uistat extends HudMarginComponent {
     healthLeftComponent.text = 'Health: $_healthLeft';
 
     if (_healthLeft <= 0) {
-      _game.overlays.add('pauseMenu');
-      _game.pauseEngine();
+      game.overlays.add('pauseMenu');
+      game.pauseEngine();
     }
     super.update(dt);
   }

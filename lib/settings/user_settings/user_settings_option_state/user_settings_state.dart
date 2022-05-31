@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserSettingsState {
@@ -21,7 +22,7 @@ class UserSettingsState {
   }
 
   bool getMoveForwardAutomatic() {
-    return preferences.getBool(moveforwardAutomatic) ?? false;
+    return preferences.getBool(moveforwardAutomatic) ?? true;
     // defult is error
   }
 
@@ -44,5 +45,20 @@ class UserSettingsState {
 
   Future setUserName(String _username) {
     return preferences.setString(username, _username);
+  }
+
+  void setPlayerColor(int r, int g, int b, double opacity) async {
+    preferences.setInt('r', r);
+    preferences.setInt('g', g);
+    preferences.setInt('b', b);
+    preferences.setDouble('o', opacity);
+  }
+
+  Color getPlayerColor() {
+    int r = preferences.getInt('r') ?? 0;
+    int g = preferences.getInt('g') ?? 0;
+    int b = preferences.getInt('b') ?? 0;
+    double opacity = preferences.getDouble('o') ?? 1.0;
+    return Color.fromRGBO(r, g, b, opacity);
   }
 }
