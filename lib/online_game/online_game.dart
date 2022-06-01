@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:game/online_game/online_game_create/online_game_create.dart';
 import 'package:game/online_game/online_game_join/online_game_join.dart';
@@ -13,6 +14,22 @@ class OnlineGame extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<OnlineGame> {
+  late var _user;
+  _MyHomePageState() {
+    try {
+      // ignore: unused_local_variable
+      final userCredential = FirebaseAuth.instance.signInAnonymously();
+      debugPrint("Signed in with temporary account.");
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case "operation-not-allowed":
+          debugPrint("Anonymous auth hasn't been enabled for this project.");
+          break;
+        default:
+          debugPrint("Unknown error.");
+      }
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

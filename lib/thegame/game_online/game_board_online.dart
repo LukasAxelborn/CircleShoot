@@ -64,7 +64,7 @@ class GameBoardOnline extends FlameGame with HasTappables {
         playerRef.onDisconnect().remove();
       }
     });
-
+/*
     try {
       // ignore: unused_local_variable
       final userCredential = FirebaseAuth.instance.signInAnonymously();
@@ -78,7 +78,7 @@ class GameBoardOnline extends FlameGame with HasTappables {
           debugPrint("Unknown error.");
       }
     }
-
+*/
     allPlayersRef = FirebaseDatabase.instance.ref(lobby);
 
     allPlayersRef.onChildChanged.listen((DatabaseEvent event) {
