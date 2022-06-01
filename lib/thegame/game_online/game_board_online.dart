@@ -94,6 +94,8 @@ class GameBoardOnline extends FlameGame with HasTappables {
       );
 
       _player?.playerAngel = changedPlayer["playerAngel"];
+      _player?.currentHealth = changedPlayer["playerHealth"];
+      _player?.score = changedPlayer["playerScore"];
 
       if (changedPlayer["shoot"]) {
         _player?.shoot();
@@ -220,12 +222,14 @@ class GameBoardOnline extends FlameGame with HasTappables {
     playerRef.set({
       'id': playerId,
       'Name': _player.name,
+      'playerColor': _player.playerColor.color.value,
+      'isHost': isHost,
       'playerPositionX': _player.playerPosition.x,
       'playerPositionY': _player.playerPosition.y,
       'playerAngel': _player.playerAngel,
-      'playerColor': _player.playerColor.color.value,
+      'playerHealth': _player.currentHealth,
+      'playerScore': _player.score,
       'shoot': false,
-      'isHost': isHost,
     });
     mapofPlayers[playerId] = _player;
   }
@@ -254,6 +258,8 @@ class GameBoardOnline extends FlameGame with HasTappables {
       'playerPositionX': _playerTemp?.playerPosition.x,
       'playerPositionY': _playerTemp?.playerPosition.y,
       'playerAngel': _playerTemp?.playerAngel,
+      'playerHealth': _playerTemp?.currentHealth,
+      'playerScore': _playerTemp?.score,
       'shoot': false,
     });
 
