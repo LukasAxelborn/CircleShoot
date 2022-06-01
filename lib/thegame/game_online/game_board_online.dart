@@ -64,7 +64,7 @@ class GameBoardOnline extends FlameGame with HasTappables {
         playerRef.onDisconnect().remove();
       }
     });
-/*
+
     try {
       // ignore: unused_local_variable
       final userCredential = FirebaseAuth.instance.signInAnonymously();
@@ -78,30 +78,31 @@ class GameBoardOnline extends FlameGame with HasTappables {
           debugPrint("Unknown error.");
       }
     }
-*/
+
     allPlayersRef = FirebaseDatabase.instance.ref(lobby);
 
     allPlayersRef.onChildChanged.listen((DatabaseEvent event) {
       final changedPlayer = event.snapshot.value as Map<dynamic, dynamic>;
 
       //debugPrint("addedPlayer: $addedPlayer");
+      if (changedPlayer["id"] != playerId) {
+        var _player = mapofPlayers[changedPlayer["id"]];
 
-      var _player = mapofPlayers[changedPlayer["id"]];
+        _player?.playerPosition = Vector2(
+          changedPlayer["playerPositionX"],
+          changedPlayer["playerPositionY"],
+        );
 
-      _player?.playerPosition = Vector2(
-        changedPlayer["playerPositionX"],
-        changedPlayer["playerPositionY"],
-      );
+        _player?.playerAngel = changedPlayer["playerAngel"];
+        _player?.currentHealth = changedPlayer["playerHealth"];
+        _player?.score = changedPlayer["playerScore"];
 
-      _player?.playerAngel = changedPlayer["playerAngel"];
-      _player?.currentHealth = changedPlayer["playerHealth"];
-      _player?.score = changedPlayer["playerScore"];
+        if (changedPlayer["shoot"]) {
+          _player?.shoot();
+        }
 
-      if (changedPlayer["shoot"]) {
-        _player?.shoot();
+        mapofPlayers[changedPlayer["id"]] = _player!;
       }
-
-      mapofPlayers[changedPlayer["id"]] = _player!;
     });
 
     allPlayersRef.onChildAdded.listen((DatabaseEvent event) {
@@ -190,7 +191,7 @@ class GameBoardOnline extends FlameGame with HasTappables {
       tileSize * buttonSizeMulti,
       color,
       () => {
-        //mapofPlayers[playerId]?.shoot(),
+        mapofPlayers[playerId]?.shoot(),
         playerRef.update({'shoot': true})
       },
       () => {},
