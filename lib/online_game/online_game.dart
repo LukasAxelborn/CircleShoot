@@ -14,7 +14,6 @@ class OnlineGame extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<OnlineGame> {
-  late var _user;
   _MyHomePageState() {
     try {
       // ignore: unused_local_variable
