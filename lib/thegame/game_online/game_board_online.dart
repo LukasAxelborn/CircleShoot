@@ -14,8 +14,12 @@ import '../avatars/player.dart';
 class GameBoardOnline extends FlameGame with HasTappables {
   late Size screenSize;
   late double tileSize;
-  late Rect background =
-      Rect.fromLTWH(0, 0, screenSize.width, screenSize.height);
+  late Rect background = Rect.fromLTWH(
+    0,
+    0,
+    screenSize.width,
+    screenSize.height,
+  );
   final Paint backgroundPaint = Paint()..color = AppColors.background;
   final Color color = AppColors.surface;
   late Player player;
@@ -32,13 +36,6 @@ class GameBoardOnline extends FlameGame with HasTappables {
   double timeSurvieved = 0;
 
   Map<String, Player> mapofPlayers = {};
-
-  static const preEnemyColors = <Color>[
-    Colors.white,
-    Colors.green,
-    Colors.grey,
-    Colors.lime,
-  ];
 
   // ignore: prefer_typing_uninitialized_variables
   late final playerId;
