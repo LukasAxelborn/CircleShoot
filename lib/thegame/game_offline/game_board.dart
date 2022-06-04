@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:game/settings/app_settings/app_colors.dart';
 
 import '../../settings/user_settings/user_settings_option_state/user_settings_state.dart';
-import '../UI_common/button_gui.dart';
+import '../UI_common/button_gui_copy.dart';
 import '../avatars/enemy.dart';
 import '../avatars/player.dart';
 import 'UI_Offline/ui_stats_offline.dart';
@@ -49,21 +49,23 @@ class GameBoard extends FlameGame with HasTappables {
     ));
 
     //right
-    buttonGUIList.add(ButtonGUI(
-      screenSize.width * 0.82,
-      screenSize.height * 0.83,
+    add(ButtonGUI(
+      size[0] * 1.10,
+      size[1] * 1.0,
       tileSize * buttonSizeMulti,
       color,
+      pi / 2,
       () => {goRight = true},
       () => {goRight = false},
     ));
 
     //left
-    buttonGUIList.add(ButtonGUI(
-      size[0] * 0.18,
-      size[1] * 0.83,
+    add(ButtonGUI(
+      size[0] * 0.50,
+      size[1] * 1.0,
       tileSize * buttonSizeMulti,
       color,
+      (pi / 2) * 3,
       () => {goLeft = true},
       () => {goLeft = false},
     ));
@@ -72,30 +74,31 @@ class GameBoard extends FlameGame with HasTappables {
       goStaight = true;
     } else {
       //forward
-      buttonGUIList.add(ButtonGUI(
-        size[0] * 0.5,
-        size[1] * 0.70,
+      add(ButtonGUI(
+        size[0] * 0.8,
+        size[1] * 0.90,
         tileSize * buttonSizeMulti,
         color,
+        0,
         () => {goStaight = true},
         () => {goStaight = false},
       ));
     }
-
     //shout
-    buttonGUIList.add(ButtonGUI(
+    add(ButtonGUI(
       size[0] * 0.5,
       size[1] * 0.90,
       tileSize * buttonSizeMulti,
       color,
+      pi,
       () => {player.shoot()},
       () => {},
     ));
-
+/*
     for (var element in buttonGUIList) {
       add(element);
     }
-
+*/
     return super.onLoad();
   }
 
@@ -169,9 +172,11 @@ class GameBoard extends FlameGame with HasTappables {
     for (var element in listEnemy) {
       element.render(canvas);
     }
+    /*
     for (var element in buttonGUIList) {
       element.render(canvas);
     }
+    */
     super.render(canvas);
   }
 
