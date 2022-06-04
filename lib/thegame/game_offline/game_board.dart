@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:game/settings/app_settings/app_colors.dart';
 
 import '../../settings/user_settings/user_settings_option_state/user_settings_state.dart';
-import '../UI_common/button_gui_copy.dart';
+import '../UI_common/button_gui.dart';
 import '../avatars/enemy.dart';
 import '../avatars/player.dart';
 import 'UI_Offline/ui_stats_offline.dart';
@@ -25,7 +25,6 @@ class GameBoard extends FlameGame with HasTappables {
   double buttonSizeMulti = 3;
 
   List<Enemy> listEnemy = <Enemy>[];
-  List<ButtonGUI> buttonGUIList = <ButtonGUI>[];
   late UistatOffline uistat;
 
   double timeSurvieved = 0;
@@ -94,11 +93,7 @@ class GameBoard extends FlameGame with HasTappables {
       () => {player.shoot()},
       () => {},
     ));
-/*
-    for (var element in buttonGUIList) {
-      add(element);
-    }
-*/
+
     return super.onLoad();
   }
 
@@ -172,11 +167,7 @@ class GameBoard extends FlameGame with HasTappables {
     for (var element in listEnemy) {
       element.render(canvas);
     }
-    /*
-    for (var element in buttonGUIList) {
-      element.render(canvas);
-    }
-    */
+
     super.render(canvas);
   }
 

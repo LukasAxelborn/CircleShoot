@@ -30,7 +30,6 @@ class GameBoardOnline extends FlameGame with HasTappables {
 
   double buttonSizeMulti = 3;
 
-  List<ButtonGUI> buttonGUIList = <ButtonGUI>[];
   late UistatOnline uistat;
 
   double timeSurvieved = 0;
@@ -148,21 +147,23 @@ class GameBoardOnline extends FlameGame with HasTappables {
     ));
 
     //right
-    buttonGUIList.add(ButtonGUI(
-      screenSize.width * 0.82,
-      screenSize.height * 0.83,
+    add(ButtonGUI(
+      size[0] * 1.10,
+      size[1] * 1.0,
       tileSize * buttonSizeMulti,
       color,
+      pi / 2,
       () => {goRight = true},
       () => {goRight = false},
     ));
 
     //left
-    buttonGUIList.add(ButtonGUI(
-      size[0] * 0.18,
-      size[1] * 0.83,
+    add(ButtonGUI(
+      size[0] * 0.50,
+      size[1] * 1.0,
       tileSize * buttonSizeMulti,
       color,
+      (pi / 2) * 3,
       () => {goLeft = true},
       () => {goLeft = false},
     ));
@@ -171,32 +172,26 @@ class GameBoardOnline extends FlameGame with HasTappables {
       goStaight = true;
     } else {
       //forward
-      buttonGUIList.add(ButtonGUI(
-        size[0] * 0.5,
-        size[1] * 0.70,
+      add(ButtonGUI(
+        size[0] * 0.8,
+        size[1] * 0.90,
         tileSize * buttonSizeMulti,
         color,
+        0,
         () => {goStaight = true},
         () => {goStaight = false},
       ));
     }
-
     //shout
-    buttonGUIList.add(ButtonGUI(
+    add(ButtonGUI(
       size[0] * 0.5,
       size[1] * 0.90,
       tileSize * buttonSizeMulti,
       color,
-      () => {
-        mapofPlayers[playerId]?.shoot(),
-        playerRef.update({'shoot': true})
-      },
+      pi,
+      () => {player.shoot()},
       () => {},
     ));
-
-    for (var element in buttonGUIList) {
-      add(element);
-    }
 
     return super.onLoad();
   }
@@ -284,9 +279,6 @@ class GameBoardOnline extends FlameGame with HasTappables {
       _player.render(canvas);
     }
 
-    for (var element in buttonGUIList) {
-      element.render(canvas);
-    }
     super.render(canvas);
   }
 
