@@ -6,6 +6,7 @@ class UserSettingsState {
   static const String moveforwardAutomatic = "MoveForward";
   static const String connectonline = "ConnectOnline";
   static const String username = "UserName";
+  static const String audiosetting = "audiosetting";
 
   static late final SharedPreferences preferences;
 
@@ -60,5 +61,14 @@ class UserSettingsState {
     int b = preferences.getInt('b') ?? 0;
     double opacity = preferences.getDouble('o') ?? 1.0;
     return Color.fromRGBO(r, g, b, opacity);
+  }
+
+  bool getAudioSetting() {
+    return preferences.getBool(audiosetting) ?? true;
+    // defult is error
+  }
+
+  Future setAudioSetting(bool _audiosetting) {
+    return preferences.setBool(audiosetting, _audiosetting);
   }
 }

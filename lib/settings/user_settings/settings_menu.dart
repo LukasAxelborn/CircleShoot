@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/customs_options_row.dart';
+import 'user_settings_options/settings_audio_checkbox.dart';
 import 'user_settings_options/settings_player_color.dart';
 import 'user_settings_options/settings_auto_forward_checkbox.dart';
 import 'user_settings_options/settings_clear_leaderboard.dart';
@@ -32,6 +33,7 @@ class _SettingsMenuState extends State<SettingsMenu> {
             CustomsRow(widget: SettingsPlayerColor()),
             CustomsRow(widget: SettingsAutoForwardCheckBox()),
             CustomsRow(widget: SettingsOnlineCheckBox()),
+            CustomsRow(widget: SettingsAudioCheckBox()),
             CustomsRow(widget: SettingsClearLeaderBoard()),
           ],
         ),
