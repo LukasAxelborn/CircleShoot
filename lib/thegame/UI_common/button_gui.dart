@@ -8,7 +8,6 @@ class ButtonGUI extends Component {
   ///Sprite and position of our button
   ///
 
-  late HudButtonComponent _button;
   late double _x, _y, buttonSize;
   late final Color _color;
   late VoidCallback onPressed;
@@ -43,7 +42,7 @@ class ButtonGUI extends Component {
       direction = 0;
     }
 
-    add(_button = HudButtonComponent(
+    add(HudButtonComponent(
       button: SpriteComponent(
         paint: Paint()..color = _color,
         sprite: sprite,

@@ -43,13 +43,13 @@ class GameBoard extends FlameGame with HasTappables {
     resize(size.toSize());
     inintilzegame();
     FlameAudio.bgm.initialize();
-
+/*
     await FlameAudio.audioCache.loadAll([
       '163441__under7dude__man-getting-hit.wav',
       '444407__mootmcnoodles__slap.wav',
       'stomping-rock-four-shots-111444.mp3',
     ]);
-
+*/
     add(uistat = UistatOffline(
       size: Vector2(0, 32.0),
       game: this,
@@ -188,6 +188,7 @@ class GameBoard extends FlameGame with HasTappables {
     player.score = 0;
     timeSurvieved = 0;
     inintilzegame();
+
     if (!FlameAudio.bgm.isPlaying) {
       FlameAudio.bgm.play('stomping-rock-four-shots-111444.mp3', volume: 0.3);
     }
